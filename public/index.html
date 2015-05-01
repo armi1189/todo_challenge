@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="toDoList">
+  <head>
+    <meta charset="utf-8">
+    <title>toDoList</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services/items.js"></script>
+    <script src="js/controllers/toDoListController.js"></script>
+    <script src="js/controllers/panelController.js"></script>
+  </head>
+
+  <body ng-controller="toDoListController as toDoCtrl">
+    
+    <section>
+      <form ng-submit="toDoCtrl.addItem()">
+        <input type="text" ng-model="toDoCtrl.newItem.name">
+        <input type="submit" class="btn" value="Add Item">
+        <span>{{toDoCtrl.newItem.name}}</span>
+    </section>
+
+
+    <section ng-controller="panelController as panelCtrl">
+      <span id="incomplete_link" ng-click="panelCtrl.setPanel(1)">ToDo </span>
+      <span id='complete_link' ng-click="panelCtrl.setPanel(2)">Complete </span>
+      <span id='all_link' ng-click="panelCtrl.setPanel(3)">All </span>
+      <span id='clear_all' ng-click="toDoCtrl.clearAll()">Clear all </span>
+
+
+      <section ng-show="panelCtrl.isPanel(1)">
+        <span>Total items: {{incompleteFilter.length}}</span>
+          <ul id="incomplete" ng-repeat="incompletedItem in incompleteFilter = (toDoCtrl.items | filter: { status: 'incomplete' })">
+            <li>
+            {{incompletedItem.name}}
+            <span ng-click="toDoCtrl.closeItem(incompletedItem)">X</span>
+            </li>
+          </ul>
+        </section>
+
+        <section ng-show="panelCtrl.isPanel(2)">
+          <span>Total items: {{completeFilter.length}}</span>
+          <ul class="items" ng-show="panelCtrl.isPanel(2)" ng-repeat="completedItem in completeFilter = (toDoCtrl.items | filter: { status: 'done' })">
+            <li>
+            {{completedItem.name}}
+            </li>
+          </ul>
+        </section>
+
+        <section ng-show="panelCtrl.isPanel(3)">
+          <span>Total items: {{toDoCtrl.items.length}}</span>
+          <ul class="items" ng-show="panelCtrl.isPanel(3)" ng-repeat="allItem in toDoCtrl.items">
+            <li>
+            {{allItem.name}}, {{allItem.status}}
+            </li>
+          </ul>
+        </section>
+      </section>
+  </body>
+</html>
