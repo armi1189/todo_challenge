@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/armi1189/todo_challenge.svg?branch=master)](https://travis-ci.org/armi1189/todo_challenge)  [![Coverage Status](https://coveralls.io/repos/armi1189/todo_challenge/badge.svg)](https://coveralls.io/r/armi1189/todo_challenge)
+
+
 # Todo Challenge
 
 * Deadline: submit completed pull request by 9am on Monday
