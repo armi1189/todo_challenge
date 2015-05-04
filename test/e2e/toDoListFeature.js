@@ -1,54 +1,80 @@
 describe('To do list manager', function() {
 
+  var incompletedTasks;
+  var completedTasks;
+  var allTasks;
+
   beforeEach(function(){
     browser.get('http://localhost:8080');
+    incompletedTasks = element.all(by.repeater("incompletedTask in incompleteFilter = (toDoCtrl.tasks | filter: { status: false })"));
+    completedTasks = element.all(by.repeater("completedTask in completeFilter = (toDoCtrl.tasks | filter: { status: true })"));
+    allTasks = element.all(by.repeater("allTask in toDoCtrl.tasks"));
   });
 
   it('has a title', function() {
     expect(browser.getTitle()).toEqual('toDoList');
   });
 
-  it('displays incomplete items', function(){
-    var incompletedItems = element.all(by.repeater("incompletedItem in incompleteFilter = (toDoCtrl.items | filter: { status: 'incomplete' })"));
-    expect(incompletedItems.last().getText()).toContain('Improve Ruby')
+  it('displays all tasks', function(){
+    expect(allTasks.first().getText()).toContain('Improve Ruby')
   });
 
-  it('displays complete items', function(){
-    element(by.id('complete_link')).click();
-    var completedItems = element.all(by.repeater("completedItem in completeFilter = (toDoCtrl.items | filter: { status: 'done' })"));
-    expect(completedItems.last().getText()).toContain('Learn JavaScript')
+  it('displays V if the task is complete', function(){
+    expect(allTasks.last().getText()).toContain('V')
   });
 
-  it('displays all items', function(){
-    element(by.id('all_link')).click();
-    var allItems = element.all(by.repeater("allItem in toDoCtrl.items"));
-    expect(allItems.last().getText()).toContain('Learn JavaScript')
+  it('displays incomplete tasks', function(){
+    element(by.id('incomplete_btn')).click();
+    expect(incompletedTasks.first().getText()).toContain('Improve Ruby')
   });
 
-  it('can clear all the items', function(){
-    element(by.id('clear_all')).click();
-    element(by.id('all_link')).click();
-    var allItems = element.all(by.repeater("allItem in toDoCtrl.items"));
-    expect(allItems).toBeEmpty;
+  it('displays complete tasks', function(){
+    element(by.id('complete_btn')).click();
+    expect(completedTasks.first().getText()).toContain('Learn JavaScript')
   });
 
-  it('can add an item to toDoList', function(){
-
+  it('can clear all the tasks', function(){
+    element(by.id('clear_all_btn')).click();
+    expect(allTasks.getText()).toBeEmpty;
   });
 
-  it('can remove an item from toDoList', function(){
-
+  it('can add an task to list', function(){
+    element(by.id('new_task')).sendKeys('Learn PHP');
+    element(by.id('add_btn')).click();
+    expect(allTasks.first().getText()).toContain('Learn PHP')
   });
 
-  it('can count the items on toDoList', function(){
-
+  it('can close a task from the all list', function(){
+    element.all(by.css('.remove_task')).get(0).click();
+    expect(allTasks.getText()).not.toContain('Improve Ruby');
   });
 
-  it('can count the items on completed list', function(){
-
+  it('can close a task from to do list', function(){
+    element(by.id('incomplete_btn')).click();
+    element.all(by.css('.remove_task')).get(1).click();
+    expect(incompletedTasks.getText()).toBeEmpty;
   });
 
-  it('can count the items on the list of all the items', function(){
+  it('display a closed task on the completed list', function(){
+    element.all(by.css('.remove_task')).get(0).click();
+    element(by.id('complete_btn')).click();
+    expect(completedTasks.first().getText()).toContain('Improve Ruby')
+  })
 
+  it('can count the tasks on to do List', function(){
+    element(by.id('incomplete_btn')).click();
+    var incomplete_count = element(by.id('incomplete_tasks_count')).getText();
+    expect(incomplete_count).toContain('1')
+  });
+
+  it('can count the tasks on completed list', function(){
+    element(by.id('complete_btn')).click();
+    var complete_count = element(by.id('complete_tasks_count')).getText();
+    expect(complete_count).toContain('1')
+  });
+
+  it('can count the tasks on the list of all the tasks', function(){
+    var all_tasks_count = element(by.id('all_tasks_count')).getText();
+    expect(all_tasks_count).toContain('2')
   });
 });

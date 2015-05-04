@@ -1,22 +1,27 @@
-toDoList.controller('toDoListController',['ToDoItems', function(ToDoItems){
+toDoList.controller('toDoListController',['ToDoTasks', function(ToDoTasks){
   
   var self = this;
   
-  self.items = ToDoItems.reverse();
+  self.tasks = ToDoTasks.reverse();
 
-  self.addItem = function(){
-    self.newItem.status = 'incomplete';
-    self.items.unshift(self.newItem);
-    self.newItem = {};
+  self.addTask = function(){
+    self.newTask.status = false;
+    self.tasks.unshift(self.newTask);
+    self.newTask = {};
   }
 
-  self.closeItem = function(item){
-    var index = self.items.indexOf(item);
-    self.items[index].status = 'done';
+  self.closeTask = function(task){
+    var index = self.tasks.indexOf(task);
+    self.tasks[index].status = true;
   };
 
   self.clearAll = function(){
-    self.items = [];
+    self.tasks = [];
+  }
+
+  self.getMark = function(status){
+    if(status) return "V"
+    else return "X"
   }
 
 }]);

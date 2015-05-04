@@ -1,55 +1,65 @@
 describe('toDoListController', function(){
   beforeEach(module('toDoList'));
 
-  var items;
+  var tasks;
 
   beforeEach(inject(function($controller){
     ctrl = $controller('toDoListController');
   }));
 
-  beforeEach(inject(function(ToDoItems){
-    items = ToDoItems;
+  beforeEach(inject(function(ToDoTasks){
+    tasks = ToDoTasks;
   }));
 
   it('initialises with an empty search term', function(){
-    expect(ctrl.newItem).toBeUndefined();
+    expect(ctrl.newTask).toBeUndefined();
   });
 
-  it('displays items', function() {
-    expect(ctrl.items).toEqual(items);
+  it('displays tasks', function() {
+    expect(ctrl.tasks).toEqual(tasks);
   });
 
-  it('knows how many items there are', function() {
-    expect(ctrl.items.length).toEqual(2);
+  it('knows how many tasks there are', function() {
+    expect(ctrl.tasks.length).toEqual(2);
   })
 
-  it('knows how many complete items there are', function(){
-    var filtered = ctrl.items.filter(checkDoneStatus);
+  it('knows how many complete tasks there are', function(){
+    var filtered = ctrl.tasks.filter(checkDoneStatus);
     expect(filtered.length).toEqual(1);
   });
 
-  it('knows how many incomplete items there are', function(){
-    var filtered = ctrl.items.filter(checkIncompleteStatus);
+  it('knows how many incomplete tasks there are', function(){
+    var filtered = ctrl.tasks.filter(checkIncompleteStatus);
     expect(filtered.length).toEqual(1);
   });
 
-  it('can add items', function() {
-    ctrl.newItem = 'Learn JasmineJS';
-    ctrl.addItem();
-    expect(ctrl.items).toContain('Learn JasmineJS');
+  it('can add tasks', function() {
+    ctrl.newTask = 'Learn JasmineJS';
+    ctrl.addTask();
+    expect(ctrl.tasks).toContain('Learn JasmineJS');
   });
 
-  it('can close items', function() {
-    var item = items[0]
-    ctrl.closeItem(item);
-    expect(ctrl.items).toContain({name: "Improve Ruby", status: 'done'});
+  it('can close tasks', function() {
+    var task = tasks[0]
+    ctrl.closeTask(task);
+    expect(ctrl.tasks).toContain({name: "Improve Ruby", status: true});
   });
 
-  function checkDoneStatus(item){
-    return item.status == 'done';
+  it('can convert false status in a X mark', function(){
+    var task_status = tasks[0].status;
+    expect(ctrl.getMark(task_status)).toEqual("X")
+  });
+
+  it('can convert true status in a V mark', function(){
+    var task_status = tasks[1].status;
+    expect(ctrl.getMark(task_status)).toEqual("V")
+  });
+
+  function checkDoneStatus(task){
+    return task.status;
   };
 
-  function checkIncompleteStatus(item){
-    return item.status != 'done';
+  function checkIncompleteStatus(task){
+    return task.status;
   };
 });
