@@ -2,7 +2,7 @@
   "name": "todo_challenge",
   "version": "1.0.0",
   "engines": {
-    "node": "0.12.x"
+    "node": "0.12"
   },
   "description": "* Deadline: submit completed pull request by 9am on Monday * You may use whatever level of JavaScript you feel comfortable with - pure JS, jQuery, Angular, or whatever weird and wonderful framework you want to try. Extra points for DogeScript",
   "main": "index.js",
