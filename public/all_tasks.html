@@ -1,0 +1,16 @@
+<aside class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 list">
+  <ul ng-repeat="allTask in toDoCtrl.tasks">
+    <li>
+      <span ng-class="allTask.status ? 'completed-task' : 'remove_task'" ng-click="allTask.status ? false : toDoCtrl.closeTask(allTask)">
+        {{toDoCtrl.getMark(allTask.status)}}
+      </span>
+      {{allTask.name}}
+    </li>
+  </ul>
+</aside>
+
+<section class="row">
+  <aside class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 count">
+    <span id="all_tasks_count" class="count-text">Total tasks: {{toDoCtrl.tasks.length}}</span>
+  </aside>
+</section>

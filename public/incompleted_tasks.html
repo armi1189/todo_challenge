@@ -1,0 +1,14 @@
+<aside class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 list">
+  <ul ng-repeat="incompletedTask in incompleteFilter = (toDoCtrl.tasks | filter: { status: false })">
+    <li>
+      <span class="remove_task" ng-click="toDoCtrl.closeTask(incompletedTask)">X</span>
+      {{incompletedTask.name}}
+    </li>
+  </ul>
+</aside>
+
+<section class="row">
+  <aside class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 count">
+    <span id="incomplete_tasks_count" class="count-text">Incompleted tasks: {{incompleteFilter.length}}</span>
+  </aside>
+</section>

@@ -1,0 +1,14 @@
+<aside class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 list">
+  <ul ng-repeat="completedTask in completeFilter = (toDoCtrl.tasks | filter: { status: true })">
+    <li>
+      <span class="completed-task">V</span>
+      {{completedTask.name}}
+    </li>
+  </ul>
+</aside>
+
+<section class="row">
+  <aside class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 count">
+    <span id="complete_tasks_count" class="count-text">Completed tasks: {{completeFilter.length}}</span>
+  </aside>
+</section>
