@@ -1,11 +1,13 @@
+# Todo Challenge
+
 [![Build Status](https://travis-ci.org/armi1189/todo_challenge.svg?branch=master)](https://travis-ci.org/armi1189/todo_challenge)
 [![Code Climate](https://codeclimate.com/github/armi1189/todo_challenge/badges/gpa.svg)](https://codeclimate.com/github/armi1189/todo_challenge)
 [![Coverage Status](https://coveralls.io/repos/armi1189/todo_challenge/badge.svg)](https://coveralls.io/r/armi1189/todo_challenge)
-
+-----
 ###[Try it on Heroku!](https://blooming-harbor-8462.herokuapp.com/)
-
-# Todo Challenge
-
+-----
+![ToDoApp](https://github.com/armi1189/todo_challenge/blob/master/public/img/todo1.jpg)
+-----
 * Deadline: submit completed pull request by 9am on Monday
 * You may use whatever level of JavaScript you feel comfortable with - pure JS, jQuery, Angular, or whatever weird and wonderful framework you want to try. Extra points for DogeScript
 
