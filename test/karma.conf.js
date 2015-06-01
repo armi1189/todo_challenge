@@ -80,10 +80,5 @@ module.exports = function(config) {
     configuration.browsers = ['Chrome_travis_ci'];
   }
 
-  coverageReporter: {
-    type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
-    dir: 'coverage/'
-  }
-
   config.set(configuration);
 };
