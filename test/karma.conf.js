@@ -38,7 +38,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage', 'coveralls'],
 
 
     // web server port
@@ -77,8 +77,13 @@ module.exports = function(config) {
   };
 
   if(process.env.TRAVIS){
-        configuration.browsers = ['Chrome_travis_ci'];
-    }
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+
+  coverageReporter: {
+    type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
+    dir: 'coverage/'
+  }
 
   config.set(configuration);
 };
