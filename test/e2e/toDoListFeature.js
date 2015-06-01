@@ -3,7 +3,7 @@ describe('To do list manager', function() {
   var incompletedTasks;
   var completedTasks;
   var allTasks;
-
+  
   beforeEach(function(){
     browser.get('http://localhost:8080');
     incompletedTasks = element.all(by.repeater("incompletedTask in incompleteFilter = (toDoCtrl.tasks | filter: { status: false })"));
