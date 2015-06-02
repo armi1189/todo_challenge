@@ -69,6 +69,12 @@ module.exports = function(config) {
       }
     },
 
+    coverageReporter: {
+      type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
+      dir: 'coverage/'
+    },
+
+
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
