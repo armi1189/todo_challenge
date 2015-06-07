@@ -10,5 +10,5 @@ toDoList.controller('panelController', function(){
 
   self.isPanel = function(number){
     return self.panel === number;
-  }
-})
+  };
+});

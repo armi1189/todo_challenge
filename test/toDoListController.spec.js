@@ -21,7 +21,7 @@ describe('toDoListController', function(){
 
   it('knows how many tasks there are', function() {
     expect(ctrl.tasks.length).toEqual(2);
-  })
+  });
 
   it('knows how many complete tasks there are', function(){
     var filtered = ctrl.tasks.filter(checkDoneStatus);
@@ -40,26 +40,26 @@ describe('toDoListController', function(){
   });
 
   it('can close tasks', function() {
-    var task = tasks[0]
+    var task = tasks[0];
     ctrl.closeTask(task);
     expect(ctrl.tasks).toContain({name: "Improve Ruby", status: true});
   });
 
   it('can convert false status in a X mark', function(){
     var task_status = tasks[0].status;
-    expect(ctrl.getMark(task_status)).toEqual("X")
+    expect(ctrl.getMark(task_status)).toEqual("X");
   });
 
   it('can convert true status in a V mark', function(){
     var task_status = tasks[1].status;
-    expect(ctrl.getMark(task_status)).toEqual("V")
+    expect(ctrl.getMark(task_status)).toEqual("V");
   });
 
   function checkDoneStatus(task){
     return task.status;
-  };
+  }
 
   function checkIncompleteStatus(task){
     return task.status;
-  };
+  }
 });

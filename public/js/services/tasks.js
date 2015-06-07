@@ -6,5 +6,5 @@ toDoList.factory('ToDoTasks', function(){
     name: "Improve Ruby",
     status: false
   }];
-  return tasks
+  return tasks;
 });

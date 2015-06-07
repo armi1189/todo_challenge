@@ -7,6 +7,7 @@
   "description": "* Deadline: submit completed pull request by 9am on Monday * You may use whatever level of JavaScript you feel comfortable with - pure JS, jQuery, Angular, or whatever weird and wonderful framework you want to try. Extra points for DogeScript",
   "main": "index.js",
   "scripts": {
+    "install": "node node_modules/protractor/bin/webdriver-manager update",
     "test": "karma start test/karma.conf.js"
   },
   "repository": {
@@ -20,6 +21,10 @@
   },
   "homepage": "https://github.com/armi1189/todo_challenge#readme",
   "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-karma": "^0.11.0",
+    "grunt-protractor-runner": "^2.0.0",
     "jasmine-core": "^2.3.0",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.8",
