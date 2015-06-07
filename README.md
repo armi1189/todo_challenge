@@ -9,7 +9,13 @@
 
 The goal was to build a Todo list as a mini front-end application without using any database.
 
-Here are the core user stories:
+Tools
+-----
+**Testing:** Jshint, Karma, Protractor, Grunt  
+**Develop:** Node, Angular  
+  
+User stories:
+-----
 
 ```
 As a forgetful person
